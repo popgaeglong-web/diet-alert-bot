@@ -1,18 +1,18 @@
 import requests
-from datetime import datetime
-import pytz
+from datetime import datetime, timedelta, timezone
 
-# กำหนด Timezone เป็นประเทศไทย
-tz = pytz.timezone('Asia/Bangkok')
-now = datetime.now(tz)
+# กำหนด Timezone ประเทศไทย (UTC+7)
+# (ป้องกันปัญหาสภาพแวดล้อม GitHub ที่ใช้เวลา UTC)
+tz_th = timezone(timedelta(hours=7))
+now = datetime.now(tz_th)
 current_time = now.strftime('%H:%M')
 
-print(f"Current time: {current_time}")
+print(f"Current Thai time: {current_time}")
 
-# ตารางเวลาและข้อความแจ้งเตือน (สามารถเพิ่มเวลาอื่นๆ ได้ตามต้องการ)
+# ตารางเวลาและข้อความแจ้งเตือน (ปรับเปลี่ยนเวลาตามต้องการได้เลยครับ)
 schedule_dict = {
-    "15:21": "🚨 ถึงเวลาดื่มน้ำและเช็กเป้าหมายลดน้ำหนักแล้วครับ!",
-    "15:25": "🥗 ได้เวลาควบคุมอาหารช่วงบ่ายแล้ว สู้ๆ นะครับ!",
+    "15:30": "🚨 ทดสอบระบบแจ้งเตือนสำเร็จแล้วครับ!",
+    "15:35": "🥗 ได้เวลาควบคุมอาหารช่วงบ่ายแล้ว สู้ๆ นะครับ!",
 }
 
 # ตรวจสอบว่าเวลาปัจจุบันตรงกับตารางเวลาหรือไม่
