@@ -1,0 +1,27 @@
+name: Run Diet Alert
+
+on:
+  workflow_dispatch:
+  schedule:
+    # ตั้งให้รันทุกๆ ต้นชั่วโมงของทุกวัน (เช่น 08:00, 09:00, 10:00 ...)
+    - cron: '0 * * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run alert script
+        run: |
+          python diet_alert.py
